@@ -1,7 +1,5 @@
 // FastTranspose.cpp : 定义控制台应用程序的入口点。
 //
-
-#include "stdafx.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -40,6 +38,28 @@ public:
 			cout<<endl;
 		}
 	}
+	void input(){
+		cout<<"请输入行数"<<endl;
+		cin>>row;
+		cout<<"请输入列数"<<endl;
+		cin>>column;
+		cout<<"请输入矩阵元素"<<endl;
+		int temp=0;
+		data.clear();terms = 0;
+		for(int i=0;i<row;i++){
+			for(int j=0;j<column;j++){
+				cin>>temp;
+				if(temp!=0){
+					Triple tmp;
+					terms++;
+					tmp.i=i;
+					tmp.j=j;
+					tmp.value=temp;
+					data.push_back(tmp);
+				}
+			}
+		}
+	}
 	SMatrix transpose(){
 		SMatrix newMatrix;
 		newMatrix.row=column;
@@ -73,17 +93,20 @@ private:
 	int terms;
 	vector<Triple> data;
 };
-int _tmain(int argc, _TCHAR* argv[])
+int main()
 {
-	vector<Triple> d;
-    d.push_back(Triple(0,2,5));
-    d.push_back(Triple(1,0,9));
-    d.push_back(Triple(1,3,7));
-    d.push_back(Triple(2,1,6));
-    d.push_back(Triple(3,3,12));
-	SMatrix test(d,4,4,5);
-	SMatrix test1=test.transpose();
-	test1.printMatrix();
+	//vector<Triple> d;
+    //d.push_back(Triple(0,2,5));
+    //d.push_back(Triple(1,0,9));
+    //d.push_back(Triple(1,3,7));
+    //d.push_back(Triple(2,1,6));
+    //d.push_back(Triple(3,3,12));
+	//SMatrix test(d,4,4,5);
+	//SMatrix test1=test.transpose();
+	//test1.printMatrix();
+	SMatrix test2;
+	test2.input();
+	test2.transpose().printMatrix();
 	system("pause");
 	return 0;
 }
